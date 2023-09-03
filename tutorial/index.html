@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Docker Tutorial</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+    <header>
+        <h1>Level 1 Dockerfile</h1>
+    </header>
+    <main>
+        <section aria-label="Step 1">
+            <h2>Step 1 - Run a default nginx docker container</h2>
+            <h3>Run nginx </h3>
+            <code>docker run -d -p 80:80 nginx:latest</code>
+            <h4>Explanation</h4>
+            <ul>
+                <li><b>-d </b>means detached, this is optional but it makes it so the container doesn't block the
+                    terminal.</li>
+                <li><b>-p 80:80 </b>mean that the ports will be bound to 80 on your machine to 80 inside the docker
+                    container</li>
+                <li><b>nginx:latest</b> is the latest nginx server that dockerhub has. You can replace latest with any
+                    version of the software you want to run that is in the hub.</li>
+            </ul>
+            <h3>Test it Out</h3>
+            <p>Open your browser and go to localhost:80. You should see the default nginx website being hosted on your
+                machine.</p>
+        </section>
+        <section aria-label="Step 2">
+            <h2>Step 2 - Host this website in Docker</h2>
+            <h3>Stop the previous docker container by using the Docker Desktop App.</h3>
+            <img src="images/DockerImageStop.png" alt="Locate the image and press the stop button.">
+            <h3>Create your Dockerfile</h3>
+            <p>Create a new file at the root folder at the same level as the Readme.md file. Call it Dockerfile. You
+                should see a blue whale appear next to it.</p>
+            <h3>Add your build code</h3>
+            <code>
+                FROM nginx:latest<br />
+                COPY ./tutorial /usr/share/nginx/html
+            </code>
+            <h4>Explanation</h4>
+            <ul>
+                <li><b>FROM</b> needs to be in all caps and lets docker know which base image to use.</li>
+                <li><b>COPY</b> also needs to be in all caps. It will copy our html content into the linux server at the
+                    directory where nginx looks for the web page to serve.</li>
+            </ul>
+            <h3>Create a Build</h3>
+            <code>docker build -t dockerTutorial:1.0 .</code>
+            <h4>Explanation</h4>
+            <ul>
+                <li><b>-t</b> means the tag you want to give it. The tag of the server we used before without your code
+                    was nginx.</li>
+                <li><b>:1.0</b> is your versioning number. You can change this number as your version of the page
+                    advances while keeping your old images available to view later on.</li>
+                <li><b>.</b> the dot is important. It means tho use this folder to get the build instructions.</li>
+            </ul>
+            <h3>Run Your Build</h3>
+            <code>docker run -d -p 80:80 dockerTutorial:1.0</code>
+            <p>Note that this is the same run command from before but we are now running the dockerTutorial instead of
+                the default nginx.</p>
+            <h3>Test it Out</h3>
+            <p>Reload your localhost:80 page. Tada! You should see this tutorial running on an nginx server in a docker
+                container.</p>
+        </section>
+        <section aria-label="Test Your Skills">
+            <h2>📚Test Your Skills</h2>
+            <ul>
+                <li>Create a new web folder called reflection</li>
+                <li>Write a paragraph about what you have learned about docker so far.</li>
+                <li>Modify the build file to use your web page.</li>
+                <li>Build the image as version 2.0 of the dockerTutorial</li>
+                <li>Run your container and show your instructor.</li>
+                <li>Then zip and compress this folder with your Dockerfile in it to submit.</li>
+            </ul>
+
+        </section>
+
+    </main>
+    <footer>
+        Thank you to Pixabay for the &nbsp;
+        <a href="https://pixabay.com/photos/ocean-blue-whale-sea-wave-whale-2051760/">
+            Whale Image
+        </a>
+        .
+    </footer>
+
+
+</body>
+
+</html>
