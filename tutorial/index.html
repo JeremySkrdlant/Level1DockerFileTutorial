@@ -49,7 +49,7 @@
                     directory where nginx looks for the web page to serve.</li>
             </ul>
             <h3>Create a Build</h3>
-            <code>docker build -t dockerTutorial:1.0 .</code>
+            <code>docker build -t docker-tutorial:1.0 .</code>
             <h4>Explanation</h4>
             <ul>
                 <li><b>-t</b> means the tag you want to give it. The tag of the server we used before without your code
@@ -59,7 +59,7 @@
                 <li><b>.</b> the dot is important. It means tho use this folder to get the build instructions.</li>
             </ul>
             <h3>Run Your Build</h3>
-            <code>docker run -d -p 80:80 dockerTutorial:1.0</code>
+            <code>docker run -d -p 80:80 docker-tutorial:1.0</code>
             <p>Note that this is the same run command from before but we are now running the dockerTutorial instead of
                 the default nginx.</p>
             <h3>Test it Out</h3>
